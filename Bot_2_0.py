@@ -24,8 +24,6 @@ def parse_input(user_input):
 @input_error
 def add_contact(args, contacts):
     """Додає новий контакт у словник."""
-    if len(args) != 2:
-        raise ValueError
     name, phone = args
     contacts[name] = phone
     return "Contact added."
@@ -33,8 +31,7 @@ def add_contact(args, contacts):
 @input_error
 def change_contact(args, contacts):
     """Змінює номер телефону для існуючого контакту."""
-    if len(args) != 2:
-        raise ValueError
+
     name, phone = args
     if name in contacts:
         contacts[name] = phone
@@ -44,12 +41,10 @@ def change_contact(args, contacts):
 @input_error
 def show_phone(args, contacts):
     """Виводить номер телефону за ім'ям."""
-    if len(args) != 1:
-        raise ValueError
-    name = args[0]
-    if name in contacts:
-        return f"{name}'s phone number: {contacts[name]}"
-    raise KeyError
+    name, = args
+
+    return f"{name}'s phone number: {contacts[name]}"
+
 
 @input_error
 def show_all(contacts):
